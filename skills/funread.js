@@ -35,7 +35,7 @@ function showUserPreference(controller, bot, message, userId, color) {
         //convo.sayFirst(`Hey, I know you <@personId:${userId}>!<br/> '${color}' is your favorite color.`);
         convo.sayFirst(`Hey, I know you! **'${color}'** is your funread at the moment.`);
 
-        convo.ask("Should I erase your funread? (yes/**no**)", [
+        convo.ask("Should I erase your last read? (yes/**no**)", [
             {
                 pattern: "^yes|ya|da|si|oui$",
                 callback: function (response, convo) {
@@ -49,7 +49,7 @@ function showUserPreference(controller, bot, message, userId, color) {
                             return;
                         }
 
-                        convo.say("Successfully reset your funread.");
+                        convo.say("Successfully reset your last read.");
                         convo.next();
                     });
 
@@ -58,7 +58,7 @@ function showUserPreference(controller, bot, message, userId, color) {
             {
                 default: true,
                 callback: function (response, convo) {
-                    convo.say("Got it, leaving your funread as is.");
+                    convo.say("Got it, leaving your last read as is.");
                     convo.next();
                 }
             }
@@ -105,7 +105,7 @@ function askForUserPreference(controller, bot, message, userId) {
 
         // Success thread
         convo.addMessage(
-            "Cool, I love '{{responses.answer}}' too",
+            "Cool, I will make sure to remind you your last read '{{responses.answer}}' ",
             "success");
     });
 }
