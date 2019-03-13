@@ -71,7 +71,7 @@ function askForUserPreference(controller, bot, message, userId) {
 
         convo.ask("What book are you reading right now?", [
             {
-               // pattern: "^reading$",
+                pattern: "string",
                 callback: function (response, convo) {
 
                     // Store color as user preference
