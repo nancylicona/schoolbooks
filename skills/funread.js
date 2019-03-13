@@ -3,7 +3,7 @@
 //
 module.exports = function (controller) {
 
-    controller.hears([/^storage$/], 'direct_message,direct_mention', function (bot, message) {
+    controller.hears([/^funread/], 'direct_message,direct_mention', function (bot, message) {
 
         // Check if a User preference already exists
         var userId = message.raw_message.actorId;
@@ -33,9 +33,9 @@ function showUserPreference(controller, bot, message, userId, color) {
 
         // [GOOD TO KNOW] Mentions are now failing in 1-1 spaces
         //convo.sayFirst(`Hey, I know you <@personId:${userId}>!<br/> '${color}' is your favorite color.`);
-        convo.sayFirst(`Hey, I know you! **'${color}'** is your favorite color.`);
+        convo.sayFirst(`Hey, I know you! **'${color}'** is your funread at the moment.`);
 
-        convo.ask("Should I erase your preference? (yes/**no**)", [
+        convo.ask("Should I erase your funread? (yes/**no**)", [
             {
                 pattern: "^yes|ya|da|si|oui$",
                 callback: function (response, convo) {
@@ -49,7 +49,7 @@ function showUserPreference(controller, bot, message, userId, color) {
                             return;
                         }
 
-                        convo.say("Successfully reset your color preference.");
+                        convo.say("Successfully reset your funread.");
                         convo.next();
                     });
 
@@ -58,7 +58,7 @@ function showUserPreference(controller, bot, message, userId, color) {
             {
                 default: true,
                 callback: function (response, convo) {
-                    convo.say("Got it, leaving your preference as is.");
+                    convo.say("Got it, leaving your funread as is.");
                     convo.next();
                 }
             }
@@ -69,9 +69,9 @@ function showUserPreference(controller, bot, message, userId, color) {
 function askForUserPreference(controller, bot, message, userId) {
     bot.startConversation(message, function (err, convo) {
 
-        convo.ask("What is your favorite color?", [
+        convo.ask("What book are you reading right now?", [
             {
-                pattern: "^blue|green|pink|red|yellow$",
+               // pattern: "^blue|green|pink|red|yellow$",
                 callback: function (response, convo) {
 
                     // Store color as user preference
@@ -89,19 +89,19 @@ function askForUserPreference(controller, bot, message, userId) {
 
                 },
             },
-            {
-                default: true,
-                callback: function (response, convo) {
-                    convo.gotoThread('bad_response');
-                }
-            }
+//             {
+//                 default: true,
+//                 callback: function (response, convo) {
+//                     convo.gotoThread('bad_response');
+//                 }
+//             }
         ], { key: "answer" });
 
-        // Bad response
-        convo.addMessage({
-            text: "Sorry, I don't know this color.<br/>_Tip: try blue, green, pink, red or yellow!_",
-            action: 'default',
-        }, 'bad_response');
+//         // response
+//         convo.addMessage({
+//             text: "Sorry, I don't know this color.<br/>_Tip: try blue, green, pink, red or yellow!_",
+//             action: 'default',
+//         }, 'bad_response');
 
         // Success thread
         convo.addMessage(
