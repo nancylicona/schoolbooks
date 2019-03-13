@@ -71,7 +71,7 @@ function askForUserPreference(controller, bot, message, userId) {
 
         convo.ask("What book are you reading right now?", [
             {
-               // pattern: "^blue|green|pink|red|yellow$",
+                pattern: "^reading$",
                 callback: function (response, convo) {
 
                     // Store color as user preference
@@ -89,19 +89,19 @@ function askForUserPreference(controller, bot, message, userId) {
 
                 },
             },
-//             {
-//                 default: true,
-//                 callback: function (response, convo) {
-//                     convo.gotoThread('bad_response');
-//                 }
-//             }
+            {
+                default: true,
+                callback: function (response, convo) {
+                    convo.gotoThread('bad_response');
+                }
+            }
         ], { key: "answer" });
 
-//         // response
-//         convo.addMessage({
-//             text: "Sorry, I don't know this color.<br/>_Tip: try blue, green, pink, red or yellow!_",
-//             action: 'default',
-//         }, 'bad_response');
+        // response
+        convo.addMessage({
+            text: "Sorry, I don't understand.<br/>_Tip: try typing reading first !_",
+            action: 'default',
+        }, 'bad_response');
 
         // Success thread
         convo.addMessage(
