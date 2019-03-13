@@ -3,7 +3,7 @@
 //
 module.exports = function (controller) {
 
-    controller.hears([/^funread/], 'direct_message,direct_mention', function (bot, message) {
+    controller.hears([/^lastread/], 'direct_message,direct_mention', function (bot, message) {
 
         // Check if a User preference already exists
         var userId = message.raw_message.actorId;
@@ -33,7 +33,7 @@ function showUserPreference(controller, bot, message, userId, color) {
 
         // [GOOD TO KNOW] Mentions are now failing in 1-1 spaces
         //convo.sayFirst(`Hey, I know you <@personId:${userId}>!<br/> '${color}' is your favorite color.`);
-        convo.sayFirst(`Hey, I know you! **'${color}'** is your funread at the moment.`);
+        convo.sayFirst(`Hey, I know you! **'${color}'** is your last read at the moment.`);
 
         convo.ask("Should I erase your last read? (yes/**no**)", [
             {
