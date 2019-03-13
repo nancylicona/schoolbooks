@@ -71,7 +71,7 @@ function askForUserPreference(controller, bot, message, userId) {
 
         convo.ask("What book are you reading right now?", [
             {
-                pattern: "string",
+                pattern: "^EE438|EE313|EE325|EE325K$",
                 callback: function (response, convo) {
 
                     // Store color as user preference
@@ -99,7 +99,7 @@ function askForUserPreference(controller, bot, message, userId) {
 
         // response
         convo.addMessage({
-            text: "Sorry, I don't understand.<br/>_Tip: try typing reading first !_",
+            text: "Sorry, I don't understand.<br/>_Tip: try typing one of the followings: EE438, EE313, EE325, or EE325K !_",
             action: 'default',
         }, 'bad_response');
 
