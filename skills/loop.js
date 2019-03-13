@@ -10,7 +10,7 @@ module.exports = function (controller) {
             var question = "Here are a few proposed DevNet activities:";
             question += "<br/> `1)` EE438: Fundamentals of Circuit Lab (**EE438**)";
             question += "<br/> `2)` EE313: Linear Signals and Systems (**EE313**)";
-            question += "<br/> `3)` EE325: Electromagnetism (**EE325**)";
+            question += "<br/> `3)` EE325: Electromagnetics (**EE325**)";
             question += "<br/> `4)` EE325K: Probability (**EE325K**)";            
             question += "\n\nWhat do you want to check?<br/>_(type a number, a **bold keyword** or `stop`)_";
             convo.ask(question, [
